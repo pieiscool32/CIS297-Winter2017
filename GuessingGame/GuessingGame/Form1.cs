@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuessingGame
@@ -15,6 +8,28 @@ namespace GuessingGame
 		public Form1()
 		{
 			InitializeComponent();
+		}
+
+		private void button1_Click( object sender, EventArgs e )
+		{
+			int usersGuess;
+			Int32.TryParse( textBox1.Text, out usersGuess );
+			if ( usersGuess == 0 )
+			{
+				label1.Text = "Please enter a number!";
+			}
+			else if ( usersGuess == 42 )
+			{
+				label1.Text = "You guessed it!";
+			}
+			else if ( usersGuess > 42 )
+			{
+				label1.Text = "Too high!";
+			}
+			else
+			{
+				label1.Text = "Too low!";
+			}
 		}
 	}
 }
