@@ -15,6 +15,13 @@ namespace ReverseString
 		{
 			string startingText = textBox1.Text;
 
+			if ( startingText == null )
+			{
+				startingText = "You didn't enter anything!";
+			}
+			// equivalent of above
+			startingText = textBox1.Text ?? "You didn't enter anything!";
+
 			StringBuilder builder = new StringBuilder();
 
 			for ( int index = 0; index < startingText.Length; index++ )
@@ -23,7 +30,6 @@ namespace ReverseString
 			}
 
 			label1.Text = builder.ToString();
-
 		}
 	}
 }
