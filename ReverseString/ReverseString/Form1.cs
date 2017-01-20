@@ -13,20 +13,16 @@ namespace ReverseString
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			string startingText = textBox1.Text;
+			Reverse( numberOfTimes: 2, toReverse: textBox1.Text );
+		}
 
-			if ( startingText == null )
-			{
-				startingText = "You didn't enter anything!";
-			}
-			// equivalent of above
-			startingText = textBox1.Text ?? "You didn't enter anything!";
-
+		private void Reverse( string toReverse, int numberOfTimes = 1 )
+		{
 			StringBuilder builder = new StringBuilder();
 
-			for ( int index = 0; index < startingText.Length; index++ )
+			for ( int index = 0; index < toReverse.Length; index++ )
 			{
-				builder.Append( startingText.Substring( startingText.Length - 1 - index, 1 ) );
+				builder.Append( toReverse.Substring( toReverse.Length - 1 - index, 1 ) );
 			}
 
 			label1.Text = builder.ToString();

@@ -12,24 +12,32 @@ namespace GuessingGame
 
 		private void button1_Click( object sender, EventArgs e )
 		{
-			int usersGuess;
-			Int32.TryParse( textBox1.Text, out usersGuess );
-			if ( usersGuess == 0 )
+			try
 			{
-				label1.Text = "Please enter a number!";
+				int usersGuess = Int32.Parse( textBox1.Text );
+				if ( usersGuess == 0 )
+				{
+					label1.Text = "Please enter a number!";
+				}
+				else if ( usersGuess == 42 )
+				{
+					label1.Text = "You guessed it!";
+					button1.Enabled = false;
+				}
+				else if ( usersGuess > 42 )
+				{
+					label1.Text = "Too high!";
+				}
+				else
+				{
+					label1.Text = "Too low!";
+				}
 			}
-			else if ( usersGuess == 42 )
+			catch ( Exception ex )
 			{
-				label1.Text = "You guessed it!";
+				MessageBox.Show( ex.StackTrace );
 			}
-			else if ( usersGuess > 42 )
-			{
-				label1.Text = "Too high!";
-			}
-			else
-			{
-				label1.Text = "Too low!";
-			}
+
 		}
 	}
 }
