@@ -37,12 +37,26 @@ namespace Bingo
 
 		private static bool HasDiagonalDownBingo()
 		{
-			return false;
+			for ( int row = 0; row < board.GetLength( 0 ); row++ )
+			{
+				if ( !numbersPicked.Contains( board[ row, row ] ) )
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 
 		private static bool HasDiagonalUpBingo()
 		{
-			return false;
+			for ( int row = board.GetLength( 0 ) - 1; row >= 0; row-- )
+			{
+				if ( !numbersPicked.Contains( board[ row, board.GetLength( 0 ) - row - 1 ] ) )
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 
 		private static bool HasRowBingo()
