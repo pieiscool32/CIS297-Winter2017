@@ -10,11 +10,39 @@ namespace OOP
 	{
 		static void Main( string[] args )
 		{
+			
+
+			Console.ReadKey();
+		}
+
+		static void Generators()
+		{
+			IntegerGenerator intGenerator = new IntegerGenerator( "Whole Numbers", 100 );
+			for ( int count = 0; count < 100; count++ )
+			{
+				Console.WriteLine( intGenerator.GetNumber() );
+			}
+
+			ExponentialGenerator expGenerator = new ExponentialGenerator( "Exponential Numbers", 2 );
+			for ( int count = 0; count < 100; count++ )
+			{
+				Console.WriteLine( expGenerator.GetNumber() );
+			}
+
+			FibGenerator fibGenerator = new FibGenerator( "Fibbonocci Numbers" );
+			for ( int count = 0; count < 100; count++ )
+			{
+				Console.WriteLine( fibGenerator.GetNumber() );
+			}
+		}
+
+		static void PrintEmployees()
+		{
 			Employee dan = new Employee( "Dan V.", 100000.0 );
 			PrintEmployee( dan );
 			Employee eddie = new Employee( "Eddie U.", 1000000 );
 			PrintEmployee( eddie );
-			Employee eric = new Employee("", 50000);
+			Employee eric = new Employee( "", 50000 );
 			PrintEmployee( eric );
 
 			Manager afeefeh = new Manager( "Afeefeh", Double.MaxValue );
@@ -23,8 +51,6 @@ namespace OOP
 			afeefeh.AddEmployeeToManage( eric );
 
 			PrintEmployee( afeefeh );
-
-			Console.ReadKey();
 		}
 
 		static void PrintObjectTypes()
@@ -54,7 +80,7 @@ namespace OOP
 		{
 			if ( employee != null )
 			{
-				Console.WriteLine( employee.ToString() );
+				Console.WriteLine( $"Type: {employee.GetType().ToString()} - {employee.ToString()}" );
 			}
 		}
 	}
