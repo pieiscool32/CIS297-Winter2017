@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP
 {
-	public class Employee
+	public class Employee : IWriter
 	{
 		private static int NumberOfEmployees = 1;
 
@@ -43,6 +43,10 @@ namespace OOP
 		public override string ToString()
 		{
 			return $"Name: {Name} - ID: {IDNumber} - Salary: ${AnnualSalary}";
+		}
+
+		{
+			Console.WriteLine( ToString() );
 		}
 	}
 }

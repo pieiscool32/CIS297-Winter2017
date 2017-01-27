@@ -10,7 +10,17 @@ namespace OOP
 	{
 		static void Main( string[] args )
 		{
-			
+			Employee dan = new Employee( "Dan V.", 100000.0 );
+			Circle smallCirlce = new Circle( 5 );
+
+			IWriter[] writers = new IWriter[ 2 ];
+			writers[ 0 ] = dan;
+			writers[ 1 ] = smallCirlce;
+
+			for ( int index = 0; index < writers.Length; index++ )
+			{
+				writers[ index ].Write();
+			}
 
 			Console.ReadKey();
 		}

@@ -43,10 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Circle.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="ExponentialGenerator.cs" />
     <Compile Include="FibGenerator.cs" />
     <Compile Include="IntegerGenerator.cs" />
+    <Compile Include="Interface1.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="NumberGenerator.cs" />
     <Compile Include="Program.cs" />
