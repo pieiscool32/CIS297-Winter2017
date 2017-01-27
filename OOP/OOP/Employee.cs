@@ -8,35 +8,41 @@ namespace OOP
 {
 	public class Employee
 	{
+		private static int NumberOfEmployees = 1;
+
 		private string _name;
-		private int _idNumber;
-		private double _salary;
 
-		public Employee(string name, int idNumber, double salary)
+		public string Name
 		{
-			_name = name;
-			_idNumber = idNumber;
-			_salary = salary;
+			get
+			{ 
+				return _name;
+			}
+			private set
+			{
+				if ( value != "" )
+				{
+					_name = value;
+				}
+				else
+				{
+					_name = "Not Assigned";
+				}
+			}
 		}
+		public int IDNumber { get; private set; }
+		public double Salary { get; private set; }
 
-		public string getName()
+		public Employee(string name, double salary)
 		{
-			return _name;
-		}
-
-		public int getIDNumber()
-		{
-			return _idNumber;
-		}
-
-		public double getSalary()
-		{
-			return _salary;
+			Name = name;
+			IDNumber = NumberOfEmployees++;
+			Salary = salary;
 		}
 
 		public override string ToString()
 		{
-			return $"Name: {getName()} - ID: {getIDNumber()} - Salary: ${getSalary()}";
+			return $"Name: {Name} - ID: {IDNumber} - Salary: ${Salary}";
 		}
 	}
 }

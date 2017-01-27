@@ -10,24 +10,29 @@ namespace OOP
 	{
 		static void Main( string[] args )
 		{
-			Employee dan = new Employee( "Dan V.", 123, 100000.0 );
+			Employee dan = new Employee( "Dan V.", 100000.0 );
 			PrintEmployee( dan );
-			Employee eddie = new Employee( "Eddie U.", 234, 1000000 );
+			Employee eddie = new Employee( "Eddie U.", 1000000 );
 			PrintEmployee( eddie );
-			Employee eric = null;
+			Employee eric = new Employee("", 50000);
 			PrintEmployee( eric );
 
+			
+
+			Console.ReadKey();
+		}
+
+		static void PrintObjectTypes()
+		{
 			object[] items = new object[ 3 ];
-			items[ 0 ] = dan;
-			items[ 1 ] = eddie;
+			items[ 0 ] = new Employee("Dan", 1000000);
+			items[ 1 ] = 10;
 			items[ 2 ] = "test";
 
-			for ( int index = 0; index< items.Length; index++ )
+			for ( int index = 0; index < items.Length; index++ )
 			{
 				PrintEmployee( items[ index ] );
 			}
-
-			Console.ReadKey();
 		}
 
 		static void PrintEmployee( object obj )
