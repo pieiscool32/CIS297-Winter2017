@@ -45,6 +45,7 @@ namespace OOP
 			return $"Name: {Name} - ID: {IDNumber} - Salary: ${AnnualSalary}";
 		}
 
+		public void Write(  )
 		{
 			Console.WriteLine( ToString() );
 		}

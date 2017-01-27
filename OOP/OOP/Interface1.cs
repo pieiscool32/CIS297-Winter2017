@@ -8,5 +8,6 @@ namespace OOP
 {
 	public interface IWriter
 	{
+		void Write( );
 	}
 }

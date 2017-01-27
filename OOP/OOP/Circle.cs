@@ -13,6 +13,7 @@ namespace OOP
 		{
 			Radius = radius;
 		}
+		public void Write( )
 		{
 			Console.WriteLine($"Circumference is : {Math.PI * Radius * 2}");
 		}
