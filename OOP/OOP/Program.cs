@@ -10,6 +10,14 @@ namespace OOP
 	{
 		static void Main( string[] args )
 		{
+			RandomWrapper random = new RandomWrapper();
+			Yahtzee myGame = new Yahtzee( random );
+
+			Console.ReadKey();
+		}
+
+		static void Writer()
+		{
 			Employee dan = new Employee( "Dan V.", 100000.0 );
 			Circle smallCirlce = new Circle( 5 );
 
@@ -21,8 +29,6 @@ namespace OOP
 			{
 				writers[ index ].Write();
 			}
-
-			Console.ReadKey();
 		}
 
 		static void Generators()
