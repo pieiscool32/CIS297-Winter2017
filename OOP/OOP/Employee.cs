@@ -31,22 +31,18 @@ namespace OOP
 			}
 		}
 		public int IDNumber { get; set; }
-		public double Salary { get; set; }
+		public double AnnualSalary { get; set; }
 
-		public Employee() : this("", 0)
-		{
-			// empty
-		}
 		public Employee(string name, double salary)
 		{
 			Name = name;
 			IDNumber = NumberOfEmployees++;
-			Salary = salary;
+			AnnualSalary = salary;
 		}
 
 		public override string ToString()
 		{
-			return $"Name: {Name} - ID: {IDNumber} - Salary: ${Salary}";
+			return $"Name: {Name} - ID: {IDNumber} - Salary: ${AnnualSalary}";
 		}
 	}
 }
