@@ -17,6 +17,17 @@ namespace OOP
 			Employee eric = new Employee("", 50000);
 			PrintEmployee( eric );
 
+			Employee nick = new Employee()
+			{
+				Name = "Nick C.",
+				Salary = 250000
+			};
+			PrintEmployee( nick );
+
+			Employee afeefeh = new Employee();
+			afeefeh.Name = "Afeefeh S";
+			afeefeh.Salary = double.MaxValue;
+			PrintEmployee( afeefeh );
 			
 
 			Console.ReadKey();

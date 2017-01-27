@@ -18,7 +18,7 @@ namespace OOP
 			{ 
 				return _name;
 			}
-			private set
+			set
 			{
 				if ( value != "" )
 				{
@@ -30,9 +30,13 @@ namespace OOP
 				}
 			}
 		}
-		public int IDNumber { get; private set; }
-		public double Salary { get; private set; }
+		public int IDNumber { get; set; }
+		public double Salary { get; set; }
 
+		public Employee() : this("", 0)
+		{
+			// empty
+		}
 		public Employee(string name, double salary)
 		{
 			Name = name;
