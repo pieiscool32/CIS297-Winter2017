@@ -51,6 +51,10 @@
 			this.label15 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.label17 = new System.Windows.Forms.Label();
+			this.onesScoreLabel = new System.Windows.Forms.Label();
+			this.scoreOnesButton = new System.Windows.Forms.Button();
+			this.dieOneHolding = new System.Windows.Forms.Label();
+			this.dieTwoHolding = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.die5PictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.die4PictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.die3PictureBox)).BeginInit();
@@ -103,6 +107,7 @@
 			this.die2PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.die2PictureBox.TabIndex = 1;
 			this.die2PictureBox.TabStop = false;
+			this.die2PictureBox.Click += new System.EventHandler(this.die2PictureBox_Click);
 			// 
 			// die1PictureBox
 			// 
@@ -112,6 +117,7 @@
 			this.die1PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.die1PictureBox.TabIndex = 0;
 			this.die1PictureBox.TabStop = false;
+			this.die1PictureBox.Click += new System.EventHandler(this.die1PictureBox_Click);
 			// 
 			// label1
 			// 
@@ -269,11 +275,49 @@
 			this.label17.TabIndex = 22;
 			this.label17.Text = "Grand Total:";
 			// 
+			// onesScoreLabel
+			// 
+			this.onesScoreLabel.AutoSize = true;
+			this.onesScoreLabel.Location = new System.Drawing.Point(1553, 49);
+			this.onesScoreLabel.Name = "onesScoreLabel";
+			this.onesScoreLabel.Size = new System.Drawing.Size(0, 25);
+			this.onesScoreLabel.TabIndex = 23;
+			// 
+			// scoreOnesButton
+			// 
+			this.scoreOnesButton.Location = new System.Drawing.Point(1693, 50);
+			this.scoreOnesButton.Name = "scoreOnesButton";
+			this.scoreOnesButton.Size = new System.Drawing.Size(140, 36);
+			this.scoreOnesButton.TabIndex = 24;
+			this.scoreOnesButton.Text = "SaveScore";
+			this.scoreOnesButton.UseVisualStyleBackColor = true;
+			this.scoreOnesButton.Click += new System.EventHandler(this.scoreOnesButton_Click);
+			// 
+			// dieOneHolding
+			// 
+			this.dieOneHolding.AutoSize = true;
+			this.dieOneHolding.Location = new System.Drawing.Point(186, 292);
+			this.dieOneHolding.Name = "dieOneHolding";
+			this.dieOneHolding.Size = new System.Drawing.Size(0, 25);
+			this.dieOneHolding.TabIndex = 25;
+			// 
+			// dieTwoHolding
+			// 
+			this.dieTwoHolding.AutoSize = true;
+			this.dieTwoHolding.Location = new System.Drawing.Point(399, 292);
+			this.dieTwoHolding.Name = "dieTwoHolding";
+			this.dieTwoHolding.Size = new System.Drawing.Size(0, 25);
+			this.dieTwoHolding.TabIndex = 26;
+			// 
 			// YahtzeeUI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1902, 1065);
+			this.Controls.Add(this.dieTwoHolding);
+			this.Controls.Add(this.dieOneHolding);
+			this.Controls.Add(this.scoreOnesButton);
+			this.Controls.Add(this.onesScoreLabel);
 			this.Controls.Add(this.label17);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.label15);
@@ -334,6 +378,10 @@
 		private System.Windows.Forms.Label label15;
 		private System.Windows.Forms.Label label16;
 		private System.Windows.Forms.Label label17;
+		private System.Windows.Forms.Label onesScoreLabel;
+		private System.Windows.Forms.Button scoreOnesButton;
+		private System.Windows.Forms.Label dieOneHolding;
+		private System.Windows.Forms.Label dieTwoHolding;
 	}
 }
 

@@ -51,9 +51,59 @@ namespace Yahtzee
 					dicePictureBoxes[ index ].Image = dicePictures[ roll[ index ] - 1 ];
 				}
 			}
-			else
+			if (dice.RollCount == 3)
 			{
 				RollButton.Enabled = false;
+			}
+
+			if ( scoreOnesButton.Enabled )
+			{
+				onesScoreLabel.Text = dice.getPossibleScores().Ones.ToString();
+			}
+		}
+
+		private void scoreOnesButton_Click( object sender, EventArgs e )
+		{
+			onesScoreLabel.Text = dice.getPossibleScores().Ones.ToString();
+			scoreOnesButton.Enabled = false;
+			resetRolls();
+		}
+
+		private void resetRolls()
+		{
+			RollButton.Enabled = true;
+			foreach ( PictureBox dicePicture in dicePictureBoxes )
+			{
+				dicePicture.Image = null;
+			}
+			dice = new YahtzeeDice( random );
+		}
+
+		private void die1PictureBox_Click( object sender, EventArgs e )
+		{
+			if ( dice.RollDie1 )
+			{
+				dice.RollDie1 = false;
+				dieOneHolding.Text = "Holding";
+			}
+			else
+			{
+				dice.RollDie1 = true;
+				dieOneHolding.Text = "";
+			}
+		}
+
+		private void die2PictureBox_Click( object sender, EventArgs e )
+		{
+			if ( dice.RollDie2 )
+			{
+				dice.RollDie2 = false;
+				dieTwoHolding.Text = "Holding";
+			}
+			else
+			{
+				dice.RollDie2 = true;
+				dieTwoHolding.Text = "";
 			}
 		}
 	}

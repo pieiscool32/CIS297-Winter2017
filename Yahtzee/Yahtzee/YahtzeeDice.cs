@@ -43,7 +43,7 @@ namespace Yahtzee
 			return dice.ToArray();
 		}
 
-		private int SumOfDice => dice[ 0 ] + dice[ 1 ] + dice[ 2 ] + dice[ 3 ] + dice[ 4 ] + dice[ 5 ];
+		private int SumOfDice => dice[ 0 ] + dice[ 1 ] + dice[ 2 ] + dice[ 3 ] + dice[ 4 ];
 
 		public YahtzeeScoreCard getPossibleScores()
 		{
@@ -73,6 +73,7 @@ namespace Yahtzee
 			if( numberOfTimesEachDieWasRolled.Contains(4) )
 			{
 				scores.FourOfAKind = SumOfDice;
+				scores.ThreeOfAKind = SumOfDice;
 			}
 
 			if ( numberOfTimesEachDieWasRolled.Contains(2) && numberOfTimesEachDieWasRolled.Contains(3) )
@@ -96,6 +97,8 @@ namespace Yahtzee
 			if( numberOfTimesEachDieWasRolled.Contains(5) )
 			{
 				scores.Yahtzee = YahtzeeScoreCard.YAHTZEE_SCORE;
+				scores.FourOfAKind = SumOfDice;
+				scores.ThreeOfAKind = SumOfDice;
 			}
 
 			scores.Chance = SumOfDice;
