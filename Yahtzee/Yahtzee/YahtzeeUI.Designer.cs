@@ -55,6 +55,10 @@
 			this.scoreOnesButton = new System.Windows.Forms.Button();
 			this.dieOneHolding = new System.Windows.Forms.Label();
 			this.dieTwoHolding = new System.Windows.Forms.Label();
+			this.twosScoreLabel = new System.Windows.Forms.Label();
+			this.threesScoreLabel = new System.Windows.Forms.Label();
+			this.scoreTwosButton = new System.Windows.Forms.Button();
+			this.scoresThreeButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.die5PictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.die4PictureBox)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.die3PictureBox)).BeginInit();
@@ -309,11 +313,51 @@
 			this.dieTwoHolding.Size = new System.Drawing.Size(0, 25);
 			this.dieTwoHolding.TabIndex = 26;
 			// 
+			// twosScoreLabel
+			// 
+			this.twosScoreLabel.AutoSize = true;
+			this.twosScoreLabel.Location = new System.Drawing.Point(1503, 105);
+			this.twosScoreLabel.Name = "twosScoreLabel";
+			this.twosScoreLabel.Size = new System.Drawing.Size(0, 25);
+			this.twosScoreLabel.TabIndex = 27;
+			// 
+			// threesScoreLabel
+			// 
+			this.threesScoreLabel.AutoSize = true;
+			this.threesScoreLabel.Location = new System.Drawing.Point(1495, 162);
+			this.threesScoreLabel.Name = "threesScoreLabel";
+			this.threesScoreLabel.Size = new System.Drawing.Size(0, 25);
+			this.threesScoreLabel.TabIndex = 28;
+			// 
+			// scoreTwosButton
+			// 
+			this.scoreTwosButton.Location = new System.Drawing.Point(1693, 105);
+			this.scoreTwosButton.Name = "scoreTwosButton";
+			this.scoreTwosButton.Size = new System.Drawing.Size(140, 36);
+			this.scoreTwosButton.TabIndex = 29;
+			this.scoreTwosButton.Text = "SaveScore";
+			this.scoreTwosButton.UseVisualStyleBackColor = true;
+			this.scoreTwosButton.Click += new System.EventHandler(this.scoreTwosButton_Click);
+			// 
+			// scoresThreeButton
+			// 
+			this.scoresThreeButton.Location = new System.Drawing.Point(1693, 162);
+			this.scoresThreeButton.Name = "scoresThreeButton";
+			this.scoresThreeButton.Size = new System.Drawing.Size(140, 36);
+			this.scoresThreeButton.TabIndex = 30;
+			this.scoresThreeButton.Text = "SaveScore";
+			this.scoresThreeButton.UseVisualStyleBackColor = true;
+			this.scoresThreeButton.Click += new System.EventHandler(this.scoresThreeButton_Click);
+			// 
 			// YahtzeeUI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1902, 1065);
+			this.Controls.Add(this.scoresThreeButton);
+			this.Controls.Add(this.scoreTwosButton);
+			this.Controls.Add(this.threesScoreLabel);
+			this.Controls.Add(this.twosScoreLabel);
 			this.Controls.Add(this.dieTwoHolding);
 			this.Controls.Add(this.dieOneHolding);
 			this.Controls.Add(this.scoreOnesButton);
@@ -382,6 +426,10 @@
 		private System.Windows.Forms.Button scoreOnesButton;
 		private System.Windows.Forms.Label dieOneHolding;
 		private System.Windows.Forms.Label dieTwoHolding;
+		private System.Windows.Forms.Label twosScoreLabel;
+		private System.Windows.Forms.Label threesScoreLabel;
+		private System.Windows.Forms.Button scoreTwosButton;
+		private System.Windows.Forms.Button scoresThreeButton;
 	}
 }
 

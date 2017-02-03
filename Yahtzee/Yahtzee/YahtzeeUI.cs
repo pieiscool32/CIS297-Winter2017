@@ -21,6 +21,8 @@ namespace Yahtzee
 			InitializeComponent();
 			random = new RandomNumberGenerator();
 			dice = new YahtzeeDice( random );
+			dice.Changed += new YahtzeeDice.ChangeHandler( UpdateScoreLabels );
+			dice.Changed += dice => MessageBox.Show( dice[ 0 ].ToString() + " " + dice[ 1 ].ToString() );
 			YahtzeeScoreCard scoreCard = new YahtzeeScoreCard();
 			dicePictureBoxes = new PictureBox[5] 
 			{
@@ -45,20 +47,15 @@ namespace Yahtzee
 		{
 			if ( dice.RollCount <= 2 )
 			{
-				int[] roll = dice.roll();
+				dice.roll();
 				for ( int index = 0; index < 5; index++ )
 				{
-					dicePictureBoxes[ index ].Image = dicePictures[ roll[ index ] - 1 ];
+					dicePictureBoxes[ index ].Image = dicePictures[ dice[ index ] - 1 ];
 				}
 			}
 			if (dice.RollCount == 3)
 			{
 				RollButton.Enabled = false;
-			}
-
-			if ( scoreOnesButton.Enabled )
-			{
-				onesScoreLabel.Text = dice.getPossibleScores().Ones.ToString();
 			}
 		}
 
@@ -69,6 +66,21 @@ namespace Yahtzee
 			resetRolls();
 		}
 
+		private void scoreTwosButton_Click( object sender, EventArgs e )
+		{
+			twosScoreLabel.Text = dice.getPossibleScores().Twos.ToString();
+			scoreTwosButton.Enabled = false;
+			resetRolls();
+		}
+
+
+		private void scoresThreeButton_Click( object sender, EventArgs e )
+		{
+			threesScoreLabel.Text = dice.getPossibleScores().Threes.ToString();
+			scoresThreeButton.Enabled = false;
+			resetRolls();
+		}
+
 		private void resetRolls()
 		{
 			RollButton.Enabled = true;
@@ -76,7 +88,9 @@ namespace Yahtzee
 			{
 				dicePicture.Image = null;
 			}
+			dice.Changed -= UpdateScoreLabels;
 			dice = new YahtzeeDice( random );
+			dice.Changed += new YahtzeeDice.ChangeHandler( UpdateScoreLabels );
 		}
 
 		private void die1PictureBox_Click( object sender, EventArgs e )
@@ -106,5 +120,22 @@ namespace Yahtzee
 				dieTwoHolding.Text = "";
 			}
 		}
+
+		private void UpdateScoreLabels(YahtzeeDice dice)
+		{
+			if ( scoreOnesButton.Enabled )
+			{
+				onesScoreLabel.Text = dice.getPossibleScores().Ones.ToString();
+			}
+			if ( scoreTwosButton.Enabled )
+			{
+				twosScoreLabel.Text = dice.getPossibleScores().Twos.ToString();
+			}
+			if ( scoresThreeButton.Enabled )
+			{
+				threesScoreLabel.Text = dice.getPossibleScores().Threes.ToString();
+			}
+		}
+
 	}
 }

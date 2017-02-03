@@ -11,6 +11,9 @@ namespace Yahtzee
 		private List<int> dice;
 		private readonly INumberGenerator _numberGenerator;
 
+		public delegate void ChangeHandler( YahtzeeDice dice );
+		public event ChangeHandler Changed;
+
 		public int RollCount { get; private set; }
 		public bool RollDie1 { get; set; } = true;
 		public bool RollDie2 { get; set; } = true;
@@ -25,7 +28,9 @@ namespace Yahtzee
 			RollCount = 0;
 		}
 
-		public int[] roll()
+		public int this[int i] => dice[ i ];
+
+		public void roll()
 		{
 			RollCount++;
 			if ( RollCount <= 3 )
@@ -39,8 +44,7 @@ namespace Yahtzee
 					}
 				}
 			}
-			
-			return dice.ToArray();
+			Changed( this );
 		}
 
 		private int SumOfDice => dice[ 0 ] + dice[ 1 ] + dice[ 2 ] + dice[ 3 ] + dice[ 4 ];
