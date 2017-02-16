@@ -44,7 +44,7 @@ namespace Yahtzee
 					}
 				}
 			}
-			Changed( this );
+			Changed?.Invoke( this );
 		}
 
 		private int SumOfDice => dice[ 0 ] + dice[ 1 ] + dice[ 2 ] + dice[ 3 ] + dice[ 4 ];
