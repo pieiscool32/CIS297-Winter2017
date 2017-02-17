@@ -5,12 +5,83 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using MoreCSharp;
 
 namespace MoreCSharp
 {
-	class Program
+	public class Program
 	{
 		static void Main( string[] args )
+		{
+			Triangle first = new Triangle();
+			first.setSides( 3, 4, 5 );
+
+			Triangle second = new Triangle();
+			second.setSides( 5, 12, 13 );
+
+			Triangle sum = second + first;
+
+			Console.WriteLine( sum[ 0 ] );
+			Console.WriteLine( sum[ 1 ] );
+			Console.WriteLine( sum[ 2 ] );
+			string test = "test";
+			Console.WriteLine( test.ReverseMe() );
+
+
+			List<int> numbers = new List<int> { 1, 1, 2, 3, 5, 8, 13, 21, 35 };
+
+			List<House> houses = new List<House>
+			{
+
+				new House
+				{
+					StreetNumber = "123 Main St.",
+					ZipCode = "48123",
+					YearBuilt = 1990
+				},
+
+				new House
+				{
+					StreetNumber = "456 Main St.",
+					ZipCode = "48123",
+					YearBuilt = 1995
+				},
+				new House
+				{
+					StreetNumber = "789 Main St.",
+					ZipCode = "48123",
+					YearBuilt = 2000
+				}
+			};
+
+			IEnumerable<House> newHouses =
+				from house in houses
+				where house.YearBuilt >= 2000
+				select house;
+			// these are equivalent
+			IEnumerable<House> otherNewHouses = houses.Where(
+				house => house.YearBuilt >= 2000 );
+
+
+
+			// The lambda notation allows us to define a 'method' in line instead of using
+			// IEnumerable<int> evenNumbers = numbers.Where( IsEven );
+			IEnumerable < int > evenNumbers = numbers.Where( number => number % 2 == 0 );
+
+			foreach ( int number in evenNumbers )
+			{
+				Console.WriteLine( number );
+			}
+
+			Console.ReadKey();
+		}
+
+		public static bool IsEven( int number )
+		{
+			return number % 2 == 0;
+		}
+
+		public void FilesAndExceptions()
 		{
 			WriteLine( "abc" );
 			string[] letters = { "a", "b", "c", "d" };
@@ -21,7 +92,7 @@ namespace MoreCSharp
 			string[] contents = File.ReadAllLines( "fib.txt" );
 
 			int sum = 0;
-			foreach( string line in contents )
+			foreach ( string line in contents )
 			{
 				int result;
 				if ( !Int32.TryParse( line, out result ) )
@@ -38,7 +109,7 @@ namespace MoreCSharp
 
 			WriteLine( "Printing each string from contents" );
 
-			File.WriteAllText( "Classes.txt", string.Format("CIS297{0}CIS310{0}CIS350{0}CIS375", Environment.NewLine ));
+			File.WriteAllText( "Classes.txt", string.Format( "CIS297{0}CIS310{0}CIS350{0}CIS375", Environment.NewLine ) );
 
 			FileStream fileStream = File.OpenWrite( "binaryContents.openme" );
 			BinaryWriter writer = new BinaryWriter( fileStream );
@@ -51,7 +122,7 @@ namespace MoreCSharp
 				writer.Write( 3 );
 				writer.Write( 5 );
 			}
-			catch( Exception e)
+			catch ( Exception e )
 			{
 				WriteLine( e.StackTrace );
 			}
@@ -60,7 +131,7 @@ namespace MoreCSharp
 				writer.Close();
 			}
 
-		
+
 
 			FileStream readStream = File.OpenRead( "binaryContents.openme" );
 			BinaryReader reader = new BinaryReader( readStream );
@@ -80,17 +151,17 @@ namespace MoreCSharp
 				triangle.setSides( 3, 4, 5 );
 				triangle.setSides( 4, 5, 6 );
 			}
-			catch(InvalidOperationException e)
+			catch ( InvalidOperationException e )
 			{
 				WriteLine( e.StackTrace );
 			}
-			catch(Exception e)
+			catch ( Exception e )
 			{
 				WriteLine( e.StackTrace );
 			}
 
 
-			Console.ReadKey();
+
 		}
 
 		public static void Print( int times, params string[] values )
