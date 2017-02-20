@@ -8,7 +8,7 @@ namespace Betting
 {
 	// T is your class implemenation of the PokerHand or Horse
 	// your class will implement ICompareable so it can be compared
-	public class Bet<T> where T : IComparable
+	public class Bet<T> where T : IComparable<T>
 	{
 		public T Mine { get; set; }
 		public T[] Theirs { get; set; }
