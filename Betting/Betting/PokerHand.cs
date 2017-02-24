@@ -197,7 +197,8 @@ namespace Betting
 		}
 		public bool HasStraight()
 		{
-			Cards.Sort( new CardSort() );
+			Cards.Sort();
+			Cards.Reverse();
 			for ( int index = 0; index < Cards.Count - 1; index++ )
 			{
 				if ( !( Cards[ index ].face - 1 == Cards[ index + 1 ].face ) )
@@ -212,8 +213,10 @@ namespace Betting
 
 		public int compareHighestCards( List<Card> mine, List<Card> theirs )
 		{
-			mine.Sort( new CardSort() );
-			theirs.Sort( new CardSort() );
+			mine.Sort( );
+			theirs.Sort( );
+			mine.Reverse();
+			theirs.Reverse();
 
 			for ( int index = 0; index < mine.Count; index++ )
 			{

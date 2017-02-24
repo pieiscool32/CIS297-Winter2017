@@ -16,7 +16,7 @@ namespace Betting
 
 		public int CompareTo( Card other )
 		{
-			return other.suit.CompareTo( suit );
+			return face.CompareTo( other.face );
 		}
 	}
 }

@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="Bet.cs" />
     <Compile Include="Card.cs" />
-    <Compile Include="CardSort.cs" />
     <Compile Include="FakeNumberGenerator.cs" />
     <Compile Include="Horse.cs" />
     <Compile Include="ILottery.cs" />
