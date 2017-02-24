@@ -10,6 +10,349 @@ namespace UnitTestProject1
 	public class PokerHandTests
 	{
 		[TestMethod]
+		public void TestStraightFlushAreEqual()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
+			Assert.AreEqual( 0, mine.CompareTo( theirs ) );
+		}
+
+		[TestMethod]
+		public void TestStraightFlushGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestFlushAreEqual()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Nine } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
+			Assert.AreEqual( 0, mine.CompareTo( theirs ) );
+		}
+
+		[TestMethod]
+		public void TestFlushGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Nine } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestStraightAreEqual()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Jack } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Nine } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Queen } );
+			Assert.AreEqual( 0, mine.CompareTo( theirs ) );
+		}
+
+		[TestMethod]
+		public void TestStraightGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Nine } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Jack } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestFourOfAKindGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestThreeOfAKindGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestTwoPairAreEqual()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.AreEqual( 0, mine.CompareTo( theirs ) );
+		}
+
+		[TestMethod]
+		public void TestTwoPairIsGreaterWithFifthCard()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Five } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestTwoPairGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestPairGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Five } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Five } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestPairGreaterAndLessWithOtherCards()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Seven } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Ace } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Five } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestHighCardGreaterAndLess()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Five } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Two } );
+
+			PokerHand theirs = new PokerHand( GetOrderdDeck() );
+			theirs.Cards.Clear();
+			theirs.Cards.Add( new Card { suit = Suit.Spades, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.King } );
+			theirs.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Five } );
+			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Three } );
+			theirs.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Two } );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( theirs.CompareTo( mine ) < 0 );
+		}
+
+		[TestMethod]
+		public void TestHasPair()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Eight } );
+			Assert.IsTrue( mine.HasPair() );
+		}
+
+		[TestMethod]
+		public void TestHasThreeOfAKind()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Queen } );
+			Assert.IsTrue( mine.HasThreeOfAKind() );
+		}
+
+		[TestMethod]
+		public void TestHasFourOfAKind()
+		{
+			PokerHand mine = new PokerHand( GetOrderdDeck() );
+			mine.Cards.Clear();
+			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Clubs, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Ace } );
+			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Eight } );
+			Assert.IsTrue( mine.HasFourOfAKind() );
+		}
+
+		[TestMethod]
 		public void TestIsFullHouse()
 		{
 			PokerHand mine = new PokerHand( GetOrderdDeck() );
@@ -19,7 +362,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Spades, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Queen } );
-			Assert.IsTrue( mine.IsFullHouse() );
+			Assert.IsTrue( mine.HasFullHouse() );
 		}
 
 		[TestMethod]
@@ -32,7 +375,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
-			Assert.IsFalse( mine.IsFullHouse() );
+			Assert.IsFalse( mine.HasFullHouse() );
 		}
 
 
@@ -46,7 +389,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
-			Assert.IsTrue( mine.IsFlush() );
+			Assert.IsTrue( mine.HasFlush() );
 		}
 
 		[TestMethod]
@@ -59,7 +402,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
-			Assert.IsFalse( mine.IsFlush() );
+			Assert.IsFalse( mine.HasFlush() );
 		}
 
 		[TestMethod]
@@ -72,7 +415,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Ten } );
-			Assert.IsTrue( mine.IsStraight() );
+			Assert.IsTrue( mine.HasStraight() );
 		}
 
 		[TestMethod]
@@ -85,7 +428,7 @@ namespace UnitTestProject1
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Queen } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Jack } );
 			mine.Cards.Add( new Card { suit = Suit.Hearts, face = Face.Nine } );
-			Assert.IsFalse( mine.IsStraight() );
+			Assert.IsFalse( mine.HasStraight() );
 		}
 
 		[TestMethod]
@@ -110,7 +453,7 @@ namespace UnitTestProject1
 			Assert.IsTrue( mine.compareHighestCards( mine.Cards, theirs.Cards ) > 0 );
 		}
 
-		[ TestMethod]
+		[TestMethod]
 		public void TestCompareToHighCard()
 		{
 			PokerHand mine = new PokerHand( GetOrderdDeck() );
@@ -158,7 +501,7 @@ namespace UnitTestProject1
 			Assert.AreEqual( Suit.Hearts, hand.Cards[ 4 ].suit );
 			Assert.AreEqual( Face.Ten, hand.Cards[ 4 ].face );
 		}
-	
+
 
 		[TestMethod]
 		public void TestHandFromDeck()
