@@ -472,7 +472,7 @@ namespace UnitTestProject1
 			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Jack } );
 			theirs.Cards.Add( new Card { suit = Suit.Diamonds, face = Face.Eight } );
 
-			//Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
+			Assert.IsTrue( mine.CompareTo( theirs ) > 0 );
 		}
 
 		[TestMethod]
