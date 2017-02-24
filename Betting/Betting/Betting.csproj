@@ -44,9 +44,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bet.cs" />
+    <Compile Include="Card.cs" />
+    <Compile Include="CardSort.cs" />
+    <Compile Include="FakeNumberGenerator.cs" />
+    <Compile Include="Horse.cs" />
+    <Compile Include="ILottery.cs" />
+    <Compile Include="INumberGenerator.cs" />
+    <Compile Include="LotteryBet.cs" />
+    <Compile Include="PokerDeck.cs" />
     <Compile Include="PokerHand.cs" />
+    <Compile Include="PowerBall.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

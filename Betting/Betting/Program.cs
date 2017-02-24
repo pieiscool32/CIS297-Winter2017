@@ -10,32 +10,50 @@ namespace Betting
 	{
 		static void Main( string[] args )
 		{
-			Bet<int> bet = new Bet<int>();
-
-			Random random = new Random();
-
-			bet.Mine = random.Next( 1, 100 );
-			bet.WagerAmount = 5;
-			bet.Theirs = new int[] {
-				random.Next( 1, 100 ),
-				random.Next( 1, 100 ),
-				random.Next( 1, 100 )
+			Bet<Horse> horseBet = new Bet<Horse>();
+			horseBet.WagerAmount = 5;
+			RandomNumberGenerator random = new RandomNumberGenerator();
+			Horse mine = new Horse( random );
+			List<Horse> horses = new List<Horse>
+			{
+				new Horse(random),
+				new Horse(random)
 			};
 
-			Console.WriteLine( $"I win: {bet.DoBet()}" );
+			horseBet.Mine = mine;
+			horseBet.Theirs = horses.ToArray();
+
+			Console.WriteLine( $"I win ${horseBet.DoBet()}" );
+
+			mine.Race();
+			foreach( Horse theirs in horses )
+			{
+				theirs.Race();
+			}
+
+			Console.WriteLine( $"I win ${horseBet.DoBet()}" );
 
 
-			PokerHand hand1 = new PokerHand( new List<int> { 3, 2, 3, 4, 5 } );
-			PokerHand hand2 = new PokerHand( new List<int> { 2, 3, 4, 5, 6 } );
+			PowerBall myPowerBall = new PowerBall( random );
+			PowerBall theirPowerBall = new PowerBall( random );
 
-			Bet<PokerHand> pokerBet = new Bet<PokerHand>();
-			pokerBet.WagerAmount = 10;
-			pokerBet.Mine = hand1;
-			pokerBet.Theirs = new[] { hand2 };
+			LotteryBet<PowerBall> powerBall = new LotteryBet<PowerBall>();
+			powerBall.Mine = new[] { myPowerBall };
+			powerBall.WinningTicket = theirPowerBall;
 
+			int numberOfTicketsUntilJackpot = 0;
 
-			Console.WriteLine( $"Poker bet, I win? : {pokerBet.DoBet()}" );
+			while ( powerBall.DoBet() == 0 )
+			{
+				powerBall.Mine = new[] { new PowerBall( random ) };
+				numberOfTicketsUntilJackpot++;
+				if ( numberOfTicketsUntilJackpot % 100000 == 0 )
+				{
+					Console.WriteLine( $"Currently on ticket #{numberOfTicketsUntilJackpot}" );
+				}
+			}
 
+			Console.WriteLine( $"It took {numberOfTicketsUntilJackpot} tickets to get a jackpot!" );
 
 			Console.ReadKey();
 		}

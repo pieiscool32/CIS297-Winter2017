@@ -29,7 +29,7 @@ namespace Betting
 			T highest = Mine;
 			foreach ( T them in Theirs )
 			{
-				if ( highest.CompareTo( them ) <= 0 )
+				if ( highest.CompareTo( them ) < 0 )
 				{
 					highest = them;
 				}
