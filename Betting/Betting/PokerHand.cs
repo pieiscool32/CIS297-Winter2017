@@ -12,6 +12,11 @@ namespace Betting
 		public enum HandRank { HighCard = 0, Pair = 1, TwoPair = 2, ThreeOfAKind = 3, Straight = 4, Flush = 5, FullHouse = 6, FourOfAKind = 7, StraightFlush = 8 };
 		public List<Card> Cards { get; private set; }
 
+		public PokerHand()
+		{
+			Cards = new List<Card>();
+		}
+
 		public PokerHand( PokerDeck deck )
 		{
 			Cards = new List<Card>();
