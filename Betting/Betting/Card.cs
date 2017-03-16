@@ -18,5 +18,25 @@ namespace Betting
 		{
 			return face.CompareTo( other.face );
 		}
+		public override bool Equals( object obj )
+		{
+			Card other = obj as Card;
+			if ( other == null )
+			{
+				return false;
+			}
+			return other.face == face && other.suit == suit;
+		}
+
+		public override int GetHashCode()
+		{
+			return ( suit.GetHashCode() + 1 ) * face.GetHashCode();
+		}
+
+
+		public override string ToString()
+		{
+			return $"{face.ToString()} of {suit.ToString()}";
+		}
 	}
 }
