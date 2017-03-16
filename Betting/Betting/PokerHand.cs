@@ -165,7 +165,8 @@ namespace Betting
 			for ( int index = 0; index < faceCount.Count; index++ )
 			{
 				if ( faceCount[ index ] == 3 )
-				{
+
+{
 					hasThreeOfAKind = true;
 				}
 			}
@@ -237,6 +238,7 @@ namespace Betting
 		public override string ToString()
 		{
 			StringBuilder builder = new StringBuilder();
+			builder.Append("Hand:");
 			foreach ( Card card in Cards )
 			{
 				builder.Append( card.ToString() );
