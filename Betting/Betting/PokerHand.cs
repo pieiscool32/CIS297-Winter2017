@@ -237,11 +237,14 @@ namespace Betting
 		public override string ToString()
 		{
 			StringBuilder builder = new StringBuilder();
+
+			builder.Append( "Your hand:" );
 			foreach ( Card card in Cards )
 			{
 				builder.Append( card.ToString() );
 				builder.Append( " " );
 			}
+
 			return builder.ToString();
 		}
 	}
