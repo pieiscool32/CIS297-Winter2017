@@ -84,6 +84,10 @@ namespace Holdem
 				}
 			}
 
+			var pairs = possibleHands
+				.Where( hand => hand.GetBestHand(shared).GetHandRank() == PokerHand.HandRank.Pair );
+				
+
 			return potentialWins / possibleHands.Count;
 		}
 
