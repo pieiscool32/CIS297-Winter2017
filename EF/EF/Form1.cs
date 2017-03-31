@@ -12,12 +12,12 @@ namespace EF
 {
 	public partial class Form1 : Form
 	{
-		private CollegeEntities1 ef;
+		private CollegeEntities ef;
 
 		public Form1()
 		{
 			InitializeComponent();
-			ef = new CollegeEntities1();
+			ef = new CollegeEntities();
 
 			// get me the only ( single ) course offering where ID is 1
 			var courseOffering = ef.CourseOfferings
