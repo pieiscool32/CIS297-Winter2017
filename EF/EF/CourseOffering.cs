@@ -7,27 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EF
+using System;
+using System.Collections.Generic;
+
+public partial class CourseOffering
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class CourseOffering
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public CourseOffering()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CourseOffering()
-        {
-            this.Registrations = new HashSet<Registration>();
-        }
-    
-        public string Semester { get; set; }
-        public int CourseID { get; set; }
-        public int FacultyID { get; set; }
-        public int Id { get; set; }
-    
-        public virtual Course Course { get; set; }
-        public virtual Faculty Faculty { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registrations { get; set; }
+        this.Registrations = new HashSet<Registration>();
     }
+
+    public string Semester { get; set; }
+    public int CourseID { get; set; }
+    public int FacultyID { get; set; }
+    public int Id { get; set; }
+
+    public virtual Course Course { get; set; }
+    public virtual Faculty Faculty { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Registration> Registrations { get; set; }
 }

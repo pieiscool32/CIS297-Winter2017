@@ -146,12 +146,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Course.datasource" />
-    <None Include="Properties\DataSources\CourseOffering.datasource" />
-    <None Include="Properties\DataSources\Faculty.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
-    <None Include="Properties\DataSources\Registration.datasource" />
-    <None Include="Properties\DataSources\Student.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

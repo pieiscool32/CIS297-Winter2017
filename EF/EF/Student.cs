@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EF
+using System;
+using System.Collections.Generic;
+
+public partial class Student
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Student
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Student()
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Student()
-        {
-            this.Registrations = new HashSet<Registration>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string ZIP { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Registration> Registrations { get; set; }
+        this.Registrations = new HashSet<Registration>();
     }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string StreetAddress { get; set; }
+    public string City { get; set; }
+    public string ZIP { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Registration> Registrations { get; set; }
 }

@@ -36,8 +36,13 @@
 			this.courseNumberTextBox = new System.Windows.Forms.TextBox();
 			this.courseDescriptionTextBox = new System.Windows.Forms.TextBox();
 			this.button1 = new System.Windows.Forms.Button();
+			this.multiLineTextBox = new System.Windows.Forms.TextBox();
 			this.courseOfferingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.courseBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+			this.courseBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.courseOfferingBindingSource)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.courseBindingSource1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// courseLabel
@@ -97,15 +102,23 @@
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
-			// courseOfferingBindingSource
+			// multiLineTextBox
 			// 
-			this.courseOfferingBindingSource.DataSource = typeof(EF.CourseOffering);
+			this.multiLineTextBox.Enabled = false;
+			this.multiLineTextBox.Location = new System.Drawing.Point(112, 114);
+			this.multiLineTextBox.Multiline = true;
+			this.multiLineTextBox.Name = "multiLineTextBox";
+			this.multiLineTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+			this.multiLineTextBox.Size = new System.Drawing.Size(341, 255);
+			this.multiLineTextBox.TabIndex = 7;
+			
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1568, 812);
+			this.Controls.Add(this.multiLineTextBox);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.courseDescriptionTextBox);
 			this.Controls.Add(this.courseNumberTextBox);
@@ -116,6 +129,8 @@
 			this.Name = "Form1";
 			this.Text = "Form1";
 			((System.ComponentModel.ISupportInitialize)(this.courseOfferingBindingSource)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.courseBindingSource1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.courseBindingSource)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -131,5 +146,8 @@
 		private System.Windows.Forms.TextBox courseDescriptionTextBox;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.BindingSource courseOfferingBindingSource;
+		private System.Windows.Forms.TextBox multiLineTextBox;
+		private System.Windows.Forms.BindingSource courseBindingSource;
+		private System.Windows.Forms.BindingSource courseBindingSource1;
 	}
 }

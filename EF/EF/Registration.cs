@@ -7,18 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EF
+using System;
+using System.Collections.Generic;
+
+public partial class Registration
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Registration
-    {
-        public int Id { get; set; }
-        public int StudentId { get; set; }
-        public int CourseOfferingId { get; set; }
-    
-        public virtual CourseOffering CourseOffering { get; set; }
-        public virtual Student Student { get; set; }
-    }
+    public int Id { get; set; }
+    public int StudentId { get; set; }
+    public int CourseOfferingId { get; set; }
+    public System.DateTime RegistrationDate { get; set; }
+
+    public virtual CourseOffering CourseOffering { get; set; }
+    public virtual Student Student { get; set; }
 }
