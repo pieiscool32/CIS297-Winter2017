@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Gaming.Input;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,6 +39,8 @@ namespace XBoxOneFirstAttempt
 
 		private Gamepad controller;
 
+		private Random random;
+
 		public MainPage()
 		{
 			// disable the TV safe display zone to get images to the very edge
@@ -51,6 +54,8 @@ namespace XBoxOneFirstAttempt
 			timer.Tick += dispatcherTimer_Tick;
 			timer.Interval = new TimeSpan( 0, 0, 0, 0, 2 );
 			timer.Start();
+
+			random = new Random();
 
 			// ensure keypresses are captured no matter what UI element has the focus
 			Window.Current.CoreWindow.KeyDown += KeyDown_Handler;
@@ -109,6 +114,8 @@ namespace XBoxOneFirstAttempt
 			{
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
 				downward = false;
+				
+				BottomPaddle.Fill = getRandomColor();
 			}
 
 			if ( Ball.Margin.Top - ballSpeed < TopPaddle.Margin.Top + TopPaddle.Height && Ball.Margin.Top >= TopPaddle.Margin.Top + TopPaddle.Height
@@ -117,6 +124,7 @@ namespace XBoxOneFirstAttempt
 			{
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
 				downward = true;
+				TopPaddle.Fill = getRandomColor();
 			}
 
 			double left = Ball.Margin.Left;
@@ -142,6 +150,11 @@ namespace XBoxOneFirstAttempt
 
 			Ball.Margin = new Thickness( left, top, 0, 0 );
 
+		}
+
+		private SolidColorBrush getRandomColor()
+		{
+			return new SolidColorBrush( Color.FromArgb( 255, (byte)random.Next( 255 ), (byte)random.Next( 255 ), (byte)random.Next( 255 ) ) );
 		}
 
 		private void MovePaddles()

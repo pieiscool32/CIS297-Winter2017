@@ -14,6 +14,7 @@
         <Rectangle x:Name="LeftWall" Fill="#FFF4F4F5" Stroke="Black" Margin="40,40,0,0" Height="450" Width="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Rectangle x:Name="RightWall" Fill="#FFF4F4F5" Stroke="Black" Margin="920,40,0,0" Height="450" Width="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Rectangle x:Name="TopPaddle" Fill="#FFF4F4F5" Stroke="Black" Margin="455,30,0,0" Height="10" Width="70" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="455,251,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Page>
