@@ -68,6 +68,9 @@ namespace XBoxOneFirstAttempt
 		{
 			switch ((int)e.Parameter)
 			{
+				case 0:
+					players = 0;
+					break;
 				case 2:
 					players = 2;
 					break;
@@ -100,12 +103,14 @@ namespace XBoxOneFirstAttempt
 			{
 				leftward = false;
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
+				Ball.Fill = getRandomColor();
 			}
 
 			if ( Ball.Margin.Left + Ball.Width == RightWall.Margin.Left || Ball.Margin.Left + Ball.Width + ballSpeed > RightWall.Margin.Left )
 			{
 				leftward = true;
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
+				Ball.Fill = getRandomColor();
 			}
 
 			if ( Ball.Margin.Top + Ball.Height + ballSpeed >= BottomPaddle.Margin.Top && Ball.Margin.Top + Ball.Height < BottomPaddle.Margin.Top
@@ -116,6 +121,7 @@ namespace XBoxOneFirstAttempt
 				downward = false;
 				
 				BottomPaddle.Fill = getRandomColor();
+				Ball.Fill = getRandomColor();
 			}
 
 			if ( Ball.Margin.Top - ballSpeed < TopPaddle.Margin.Top + TopPaddle.Height && Ball.Margin.Top >= TopPaddle.Margin.Top + TopPaddle.Height
@@ -125,6 +131,7 @@ namespace XBoxOneFirstAttempt
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
 				downward = true;
 				TopPaddle.Fill = getRandomColor();
+				Ball.Fill = getRandomColor();
 			}
 
 			double left = Ball.Margin.Left;
@@ -149,7 +156,6 @@ namespace XBoxOneFirstAttempt
 			}
 
 			Ball.Margin = new Thickness( left, top, 0, 0 );
-
 		}
 
 		private SolidColorBrush getRandomColor()
@@ -159,7 +165,13 @@ namespace XBoxOneFirstAttempt
 
 		private void MovePaddles()
 		{
-			if ( Gamepad.Gamepads.Count > 0 )
+			if ( players == 0 )
+			{
+				ComputerMovePaddle(TopPaddle);
+				ComputerMovePaddle(BottomPaddle);
+			}
+
+			else if ( Gamepad.Gamepads.Count > 0 )
 			{
 				controller = Gamepad.Gamepads.First();
 

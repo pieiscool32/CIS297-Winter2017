@@ -46,5 +46,10 @@ namespace XBoxOneFirstAttempt
 		{
 			this.Frame.Navigate( typeof( MainPage ), 2 );
 		}
+
+		private void PCvsPCButton_Click(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof(MainPage), 0);
+		}
 	}
 }

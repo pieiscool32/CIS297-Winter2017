@@ -10,8 +10,9 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button x:Name="SinglePlayerGameButton" Content="New Single Player Game" HorizontalAlignment="Left" Margin="126,217,0,0" VerticalAlignment="Top" Click="onePlayer_button_Click"/>
         <Button x:Name="QuitButton" Content="Quit" HorizontalAlignment="Left" Margin="706,217,0,0" VerticalAlignment="Top" Click="QuitButton_Click"/>
-        <Button x:Name="TwoPlayerGameButton" Content="New Two Player Game" HorizontalAlignment="Left" Margin="425,217,0,0" VerticalAlignment="Top" Click="two_player_button_Click"/>
+        <Button x:Name="TwoPlayerGameButton" Content="New Two Player Game" HorizontalAlignment="Left" Margin="345,217,0,0" VerticalAlignment="Top" Click="two_player_button_Click"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="425,124,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Button x:Name="PCvsPCButton" Content="PC vs PC" HorizontalAlignment="Left" Margin="581,217,0,0" VerticalAlignment="Top" Click="PCvsPCButton_Click"/>
 
     </Grid>
 </Page>
