@@ -60,7 +60,6 @@ namespace Holdem
 					} );
 				}
 			}
-
 			double potentialWins = 0;
 			double potentialDraws = 0;
 			double potentialLosses = 0;
@@ -101,9 +100,9 @@ namespace Holdem
 				{
 					for ( int thirdIndex = secondIndex + 1; thirdIndex <= 4; thirdIndex++ )
 					{
-						for ( int fourthIndex = thirdIndex + 1; fourthIndex <= 6; fourthIndex++ )
+						for ( int fourthIndex = thirdIndex + 1; fourthIndex <= 5; fourthIndex++ )
 						{
-							for ( int fifthIndex = fourthIndex + 1; fifthIndex < 7; fifthIndex++ )
+							for ( int fifthIndex = fourthIndex + 1; fifthIndex <= 6; fifthIndex++ )
 							{
 								PokerHand hand = new PokerHand();
 								hand.Cards.Add( cards[ firstIndex ] );
