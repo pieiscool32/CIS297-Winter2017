@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Gaming.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
@@ -41,6 +34,8 @@ namespace XBoxOneFirstAttempt
 
 		private Random random;
 
+		private List<Rectangle> bricks;
+
 		public MainPage()
 		{
 			// disable the TV safe display zone to get images to the very edge
@@ -48,10 +43,12 @@ namespace XBoxOneFirstAttempt
 
 			this.InitializeComponent();
 
+			bricks = new List<Rectangle>();
+
 			// setup game timer
 			timer = new DispatcherTimer();
 			// add event handler to the Tick event
-			timer.Tick += dispatcherTimer_Tick;
+			timer.Tick += DispatcherTimer_Tick;
 			timer.Interval = new TimeSpan( 0, 0, 0, 0, 2 );
 			timer.Start();
 
@@ -80,14 +77,50 @@ namespace XBoxOneFirstAttempt
 			}			
 		}
 
-		private void dispatcherTimer_Tick( object sender, object e )
+		public void DoesTheBallHitABrick( )
+		{
+			Rectangle hitBrick = null;
+			foreach ( var brick in bricks )
+			{
+				if ( downward )
+				{
+					if ( Ball.Margin.Top + Ball.Height <= brick.Margin.Top 
+						&& Ball.Margin.Top + Ball.Height + ballSpeed >= brick.Margin.Top 
+						&& Ball.Margin.Left >= brick.Margin.Left
+						&& Ball.Margin.Left + Ball.Width <= brick.Margin.Left + brick.Width )
+					{
+						downward = false;
+						Grid.Children.Remove( brick );
+						hitBrick = brick;
+					}
+				}
+				else
+				{
+					if ( Ball.Margin.Top >= brick.Margin.Top + brick.Height
+						&& Ball.Margin.Top - ballSpeed <= brick.Margin.Top + brick.Height
+						&& Ball.Margin.Left >= brick.Margin.Left
+						&& Ball.Margin.Left + Ball.Width <= brick.Margin.Left + brick.Width )
+					{
+						downward = true;
+						Grid.Children.Remove( brick );
+						hitBrick = brick;
+					}
+				}
+			}
+			if ( hitBrick != null )
+			{
+				bricks.Remove( hitBrick );
+			}
+		}
+
+		private void DispatcherTimer_Tick( object sender, object e )
 		{
 			MovePaddles();
 
 			EnsurePaddleIsInBounds(BottomPaddle);
 			EnsurePaddleIsInBounds( TopPaddle );
 
-			if ( Ball.Margin.Top + Ball.Height > LeftWall.Margin.Top + LeftWall.Height || Ball.Margin.Top < LeftWall.Margin.Top )
+			if ( Ball.Margin.Top > LeftWall.Margin.Top + LeftWall.Height || Ball.Margin.Top + Ball.Height < LeftWall.Margin.Top )
 			{
 				GameOver = true;
 			}
@@ -99,29 +132,31 @@ namespace XBoxOneFirstAttempt
 				this.Frame.Navigate( typeof( Start ), "Game Over" );
 			}
 
+			DoesTheBallHitABrick();
+
 			if ( Ball.Margin.Left == LeftWall.Margin.Left + LeftWall.Width || Ball.Margin.Left + ballSpeed < LeftWall.Margin.Left + LeftWall.Width )
 			{
 				leftward = false;
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
-				Ball.Fill = getRandomColor();
+				Ball.Fill = GetRandomColor();
 			}
 
 			if ( Ball.Margin.Left + Ball.Width == RightWall.Margin.Left || Ball.Margin.Left + Ball.Width + ballSpeed > RightWall.Margin.Left )
 			{
 				leftward = true;
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
-				Ball.Fill = getRandomColor();
+				Ball.Fill = GetRandomColor();
 			}
 
-			if ( Ball.Margin.Top + Ball.Height + ballSpeed >= BottomPaddle.Margin.Top && Ball.Margin.Top + Ball.Height < BottomPaddle.Margin.Top
+			if ( Ball.Margin.Top + Ball.Height + ballSpeed >= BottomPaddle.Margin.Top && Ball.Margin.Top + Ball.Height <= BottomPaddle.Margin.Top
 				&& Ball.Margin.Left >= BottomPaddle.Margin.Left
 				&& Ball.Margin.Left + Ball.Width <= BottomPaddle.Margin.Left + BottomPaddle.Width )
 			{
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
 				downward = false;
 				
-				BottomPaddle.Fill = getRandomColor();
-				Ball.Fill = getRandomColor();
+				BottomPaddle.Fill = GetRandomColor();
+				Ball.Fill = GetRandomColor();
 			}
 
 			if ( Ball.Margin.Top - ballSpeed < TopPaddle.Margin.Top + TopPaddle.Height && Ball.Margin.Top >= TopPaddle.Margin.Top + TopPaddle.Height
@@ -130,8 +165,8 @@ namespace XBoxOneFirstAttempt
 			{
 				ElementSoundPlayer.Play( ElementSoundKind.Focus );
 				downward = true;
-				TopPaddle.Fill = getRandomColor();
-				Ball.Fill = getRandomColor();
+				TopPaddle.Fill = GetRandomColor();
+				Ball.Fill = GetRandomColor();
 			}
 
 			double left = Ball.Margin.Left;
@@ -158,7 +193,7 @@ namespace XBoxOneFirstAttempt
 			Ball.Margin = new Thickness( left, top, 0, 0 );
 		}
 
-		private SolidColorBrush getRandomColor()
+		private SolidColorBrush GetRandomColor()
 		{
 			return new SolidColorBrush( Color.FromArgb( 255, (byte)random.Next( 255 ), (byte)random.Next( 255 ), (byte)random.Next( 255 ) ) );
 		}
@@ -270,6 +305,20 @@ namespace XBoxOneFirstAttempt
 			else if ( e.VirtualKey == Windows.System.VirtualKey.Shift )
 			{
 				ballSpeed--;
+			}
+			else if ( e.VirtualKey == Windows.System.VirtualKey.B )
+			{
+				var rectangle = new Rectangle();
+				rectangle.Name = "Obstacle";
+				rectangle.Fill = GetRandomColor();
+				rectangle.Stroke = new SolidColorBrush( Color.FromArgb( 255, 255, 255, 255 ) );
+				rectangle.Margin = new Thickness( random.Next((int)LeftWall.Margin.Left, (int)RightWall.Margin.Left), 100, 0, 0 );
+				rectangle.Height = 50;
+				rectangle.Width = 100;
+				rectangle.HorizontalAlignment = HorizontalAlignment.Left;
+				rectangle.VerticalAlignment = VerticalAlignment.Top;
+				bricks.Add( rectangle );
+				Grid.Children.Add( rectangle );
 			}
 		}
 
